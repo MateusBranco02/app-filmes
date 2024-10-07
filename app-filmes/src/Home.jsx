@@ -5,14 +5,14 @@ import axios from 'axios';
 
 export default function Home() {
   const [buscar, setBuscar] = useState('');
-  const [filmes, setFilmes] = useState(null);
+  const [filmes, setFilmes] = useState([]);
 
   const carregarFilme = async () => {
     try {
-      const response = await axios.get(`http://www.omdbapi.com/?apikey=28d0dee8&s=${buscar}`);
+      const url = `http://www.omdbapi.com/?apikey=28d0dee8&s=${buscar}`;
+      const response = await axios.get(url);
       setFilmes(response.data.Search);
       localStorage.setItem('filmes', JSON.stringify(response.data.Search));
-      console.log(response.data);
       setBuscar('');
     } catch (error) {
       console.error(error);
@@ -40,20 +40,22 @@ export default function Home() {
         <button onClick={carregarFilme}>Buscar</button>
       </div>
 
-      <div className='filmes-container'>
+      <ul className='filmes-container'>
         {filmes && filmes.length > 0 ? (
-          filmes.map(filme => (
+          filmes.map((filme, key) =>
             <div key={filme.imdbID} className='card'>
-              <Link to={`/filme/${filme.imdbID}`}>
-                <img src={filme.Poster} alt={filme.Title} />
-                <h2>{filme.Title}</h2>
+              <Link to={`/filme/${filme.imdbID}`} key={key}>
+                <li>
+                  <img src={filme.Poster} alt={filme.Title} />
+                  <h2>{filme.Title}</h2>
+                </li>
               </Link>
             </div>
           ))
-        ) : (
-          <p>Nenhum filme encontrado!</p>
-        )}
-      </div>
+          : (
+            <p>Nenhum filme encontrado!</p>
+          )}
+      </ul>
     </>
   );
 }

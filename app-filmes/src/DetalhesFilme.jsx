@@ -10,20 +10,20 @@ export default function DetalhesFilme() {
 
 
     useEffect(() => {
-        const detalhesFilme = async () => {
-            try {
-                const response = await axios.get(`http://www.omdbapi.com/?apikey=28d0dee8&i=${idFilme}`);
-                setFilme(response.data);
-                setLoading(false);
-                console.log(response.data);
-            } catch (error) {
-                console.error('Erro ao buscar detalhes dos filme: ', error);
-                setFilme(false);
-            }
-        }
-
         detalhesFilme();
     }, []);
+
+    const detalhesFilme = async () => {
+        try {
+            const url = `http://www.omdbapi.com/?apikey=28d0dee8&i=${idFilme}`;
+            const response = await axios.get(url);
+            setFilme(response.data);
+            setLoading(false);
+        } catch (error) {
+            console.error('Erro ao buscar detalhes dos filme: ', error);
+            setFilme(false);
+        }
+    }
 
     if (loading) {
         return <p>Carregando...</p>
