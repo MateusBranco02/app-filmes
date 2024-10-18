@@ -40,15 +40,15 @@ export default function DetalhesFilme() {
                     </div>
 
                     <div className="filme-info">
-                        <p><strong>Sinopse:</strong> {filme.Plot}</p>
-                        <p><strong>Gênero:</strong> {filme.Genre}</p>
-                        <p><strong>Diretor:</strong> {filme.Director}</p>
-                        <p><strong>Atores:</strong> {filme.Actors}</p>
-                        <p><strong>Idioma:</strong> {filme.Language}</p>
+                        <p className='sinopse'><strong>Sinopse:</strong> {filme.Plot}</p>
+                        <p className='genero'><strong>Gênero:</strong> {filme.Genre}</p>
+                        <p className='diretor'><strong>Diretor:</strong> {filme.Director}</p>
+                        <p className='atores'><strong>Atores:</strong> {filme.Actors}</p>
+                        <p className='idioma'><strong>Idioma:</strong> {filme.Language}</p>
                         <div className="sub-info">
-                            <span><strong>Lançamento:</strong> {filme.Released}</span>
-                            <span><strong>Duração:</strong> {filme.Runtime}</span>
-                            <span><strong>Avaliação:</strong> {filme.imdbRating}</span>
+                            <span className='lancamento'><strong>Lançamento:</strong> {filme.Released}</span>
+                            <span className='duracao'><strong>Duração:</strong> {filme.Runtime}</span>
+                            <span className='avaliacao'><strong>Avaliação:</strong> {filme.imdbRating}</span>
                         </div>
                         <Link to="/" className="voltar">Voltar</Link>
                     </div>
